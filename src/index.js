@@ -1,11 +1,10 @@
-const express = require("express");
-require("./db/mongoose");
+const app = require("./app");
 
-const userRouter = require("./routes/api/users");
-const taskRouter = require("./routes/api/tasks");
-
-const app = express();
 const port = process.env.PORT;
+
+app.listen(port, () => {
+  console.log("Server listening on port " + port);
+});
 
 // app.use((req, res, next) => {
 //   console.log(req.method, req.path);
@@ -20,21 +19,10 @@ const port = process.env.PORT;
 //   res.status(503).send("Site under maintenance. Please try again later");
 // });
 
-//middleware
-app.use(express.json());
-// Use Routes
-app.use(userRouter);
-app.use(taskRouter);
-
-//
 // Without middleware: new request -> run route handler
 //
 // With middleware: new request -> do something -> run route handler
 //
-
-app.listen(port, () => {
-  console.log("Server listening on port " + port);
-});
 
 // const bcrypt = require("bcryptjs");
 
